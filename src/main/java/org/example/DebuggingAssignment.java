@@ -1,7 +1,20 @@
 package org.example;
+
 public class DebuggingAssignment {
-    // Method to calculate the average of an array of integers
     public static double calculateAverage(int[] numbers) {
+        // Uncomment to introduce a null pointer exception
+        // int length = numbers.length;
+
+        // Uncomment to introduce an array index out of bounds exception
+        // int sum = 0;
+        // for (int i = 0; i <= numbers.length; i++) {
+        //     sum += numbers[i];
+        // }
+
+        // Uncomment to introduce a logic error
+        // return (double) sum / (numbers.length - 1);
+
+        // Correct implementation
         if (numbers == null || numbers.length == 0) {
             throw new IllegalArgumentException("Array cannot be null or empty");
         }
@@ -13,46 +26,22 @@ public class DebuggingAssignment {
     }
 
     public static void main(String[] args) {
-        // Test the method with an array containing 1, 2, 3, 4, 5
         int[] numbers = {1, 2, 3, 4, 5};
         System.out.println("The average is: " + calculateAverage(numbers));
-
-        // Introduce a null pointer exception
-        try {
-            numbers = null;
-            System.out.println("The average is: " + calculateAverage(numbers));
-        } catch (NullPointerException e) {
-            System.out.println("NullPointerException caught: " + e.getMessage());
-        }
-
-        // Introduce an array index out of bounds exception
-        try {
-            int[] invalidNumbers = {1, 2, 3, 4, 5};
-            for (int i = 0; i <= invalidNumbers.length; i++) {
-                System.out.println(invalidNumbers[i]);
-            }
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("ArrayIndexOutOfBoundsException caught: " + e.getMessage());
-        }
-
-        // Introduce a logic error
-        try {
-            int[] logicErrorNumbers = {1, 2, 3, 4, 5};
-            System.out.println("The incorrect average is: " + calculateIncorrectAverage(logicErrorNumbers));
-        } catch (Exception e) {
-            System.out.println("Logic error detected.");
-        }
-    }
-
-    // Method to introduce a logic error
-    public static double calculateIncorrectAverage(int[] numbers) {
-        if (numbers == null || numbers.length == 0) {
-            throw new IllegalArgumentException("Array cannot be null or empty");
-        }
-        int sum = 0;
-        for (int number : numbers) {
-            sum += number;
-        }
-        return (double) sum / (numbers.length - 1);  // Intentional logic error
     }
 }
+
+// ### Null Pointer Exception
+// Line: int length = numbers.length;
+// Fix: Check if 'numbers' is null before accessing its length.
+// Debugger: Set a breakpoint, run debugger, inspect 'numbers' variable.
+
+// ### Array Index Out of Bounds Exception
+// Line: sum += numbers[i];
+// Fix: Ensure loop condition is i < numbers.length.
+// Debugger: Set a breakpoint at the loop, run debugger, step through loop, check value of 'i'.
+
+// ### Logic Error
+// Line: return (double) sum / (numbers.length - 1);
+// Fix: Use (double) sum / numbers.length for correct average.
+// Debugger: Set a breakpoint at return statement, run debugger, inspect 'sum' and 'numbers.length'.
